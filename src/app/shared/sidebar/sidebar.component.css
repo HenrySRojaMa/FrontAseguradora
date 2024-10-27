@@ -2,6 +2,9 @@
 li{
     cursor: pointer;
 }
+h4{
+    cursor: pointer;
+}
 #menu{
     height: 90vh;
 }

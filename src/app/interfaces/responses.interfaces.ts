@@ -11,3 +11,11 @@ export interface Cliente {
     telefono:  string;
     edad:      number;
 }
+
+export interface Seguro {
+    idSeguro: number;
+    codigo:    string;
+    nombre:    string;
+    cobertura:  number;
+    prima:      number;
+}

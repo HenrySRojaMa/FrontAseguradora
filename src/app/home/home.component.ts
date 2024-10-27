@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiaseguradoraService } from '../apiaseguradora.service';
-import { finalize } from 'rxjs';
+import { Cliente, Seguro } from '../interfaces/responses.interfaces';
 
 @Component({
   selector: 'app-home',
@@ -9,21 +9,32 @@ import { finalize } from 'rxjs';
 })
 export class HomeComponent {
 
+  contrato!: Seguro[];
+  asegurados!: Cliente[];
+  cedula: string = "";
+  codigo: string = "";
+  buttonDisable: boolean = false;
+
   constructor(private _apiService: ApiaseguradoraService){}
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];//Seleccionar archivo 
-    if (file) {
-      const formData = new FormData();//definir Form Data
-      formData.append('file', file);
-      this._apiService.uploadFile(formData)
-      .subscribe((data) => {
-          alert(data.message);
-        }, err => {
-          alert("Error de coneccion con el servidor");
-          console.log(err);
-        });
-    }
+  getContract(){
+    this._apiService.listClientContracts(this.cedula)
+    .subscribe((data) => {
+      this.contrato = data.data;
+    }, err => {
+      alert("Error de coneccion con el servidor");
+      console.log(err);
+    });
+  }
+
+  getClients(){
+    this._apiService.listInsurerClients(this.codigo)
+    .subscribe((data) => {
+      this.asegurados = data.data;
+    }, err => {
+      alert("Error de coneccion con el servidor");
+      console.log(err);
+    });
   }
 
 }

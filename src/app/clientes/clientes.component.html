@@ -1,1 +1,47 @@
-<p>clientes works!</p>
+<br>
+<br>
+<div class="mb-3">
+    <label for="" class="form-label">CARGAR ARCHIVO</label>
+    <input type="file" class="form-control" name="" id="" placeholder="" (change)="onFileSelected($event)" #archivo />
+</div>
+<br>
+<br>
+<div
+    class="row justify-content-center align-items-center g-2"
+>
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div
+            class="table-responsive-md"
+        >
+            <table
+                class="table table-primary"
+            >
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">CEDULA</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">TELEFONO</th>
+                        <th scope="col">EDAD</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of asegurados">
+                        <td>{{item.idCliente}}</td>
+                        <td>{{item.cedula}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.telefono}}</td>
+                        <td>{{item.edad}}</td>
+                        <td><button type="button" class="btn btn-danger" (click)="deleteClient(item.idCliente)">
+                            Eliminar
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    <div class="col-md-1"></div>
+</div>
